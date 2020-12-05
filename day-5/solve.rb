@@ -15,5 +15,9 @@ class BoardingPass
   end
 end
 
-passes = File.readlines('input.txt').map(&:chomp)
-passes.map {|pass| BoardingPass.new(pass)}.map(&:seat_id).max
+passes = File.readlines('input.txt').map {|pass| BoardingPass.new(pass)}
+seat_ids = passes.map(&:seat_id)
+
+max = seat_ids.max
+min = seat_ids.min
+missing = (min..max).to_a - seat_ids
